@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 public class AddToCartPage {
 	WebDriver driver;
 	By firstProduct = By.xpath("//div[contains(text(),'Apple iPhone 15 (Black, 128 GB)')]");
-	By addToCart = By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[19]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/*[name()='svg'][1]");
+	By addToCart =   By.xpath("//div[@style=\"align-items: center; justify-content: center; z-index: 2; border-color: rgb(214, 214, 214); height: 44px; width: 44px; border-radius: 12px; border-width: 1px;\"]");
 	public AddToCartPage(WebDriver driver) {
 		this.driver = driver;
 	}
