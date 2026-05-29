@@ -4,11 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class AddToCartPage {
+public class BuyNowPage {
 	WebDriver driver;
 	By firstProduct = By.xpath("//div[contains(text(),'Apple iPhone 15 (Black, 128 GB)')]");
-	By addToCart =   By.xpath("//div[@style=\"align-items: center; justify-content: center; z-index: 2; border-color: rgb(214, 214, 214); height: 44px; width: 44px; border-radius: 12px; border-width: 1px;\"]");
-	public AddToCartPage(WebDriver driver) {
+	By buyNowbtn =   By.xpath("//div[contains(text(),'Buy now')]");
+	public BuyNowPage(WebDriver driver) {
 		this.driver = driver;
 	}
 	
@@ -28,12 +28,12 @@ public class AddToCartPage {
 	}
 	
 	
-	public void clickAddToCart() {
+	public void clickBuyNow() {
 		System.out.println("Title: " + driver.getTitle());
 		System.out.println("URL: " + driver.getCurrentUrl());
 		
 		
-		driver.findElement(addToCart).click();
+		driver.findElement(buyNowbtn).click();
 		
 	}
 }

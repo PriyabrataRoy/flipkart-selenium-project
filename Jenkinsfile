@@ -1,80 +1,37 @@
 pipeline {
+    agent any
 
- 
+    tools {
+        jdk 'JDK25'
+        maven 'Maven3'
+    }
 
-    agent any
+    stages {
 
- 
+        stage('Clone') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/PriyabrataRoy/flipkart-selenium-project.git'
+            }
+        }
 
-    tools {
-        jdk 'JDK25'
-        maven 'Maven3'
-    }
+        stage('Build') {
+            steps {
+                bat 'mvn test'
+            }
+        }
+    }
 
- 
-
-    stages {
-
- 
-
-        stage('Git Checkout') {
-            steps {
-                git 'https://github.com/PriyabrataRoy/flipkart-selenium-project.git'
-            }
-        }
-
- 
-
-        stage('Clean Project') {
-            steps {
-                bat 'mvn clean'
-            }
-        }
-
- 
-
-        stage('Run Tests') {
-            steps {
-                bat 'mvn test'
-            }
-        }
-
- 
-
-        stage('Generate Reports') {
-            steps {
-                publishHTML([
-                    allowMissing: false,
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true,
-                    reportDir: 'reports',
-                    reportFiles: 'ExtentReport.html',
-                    reportName: 'Extent Report'
-                ])
-            }
-        }
-    }
-
- 
-
-    post {
-
- 
-
-        always {
-            archiveArtifacts artifacts: 'reports/*'
-        }
-
- 
-
-        success {
-            echo 'Pipeline Executed Successfully'
-        }
-
- 
-
-        failure {
-            echo 'Pipeline Failed'
-        }
-    }
+    post {
+        always {
+            publishHTML([
+                allowMissing: false,
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
+                reportDir: 'target',
+                reportFiles: 'cucumber-reports.html',
+                reportName: 'Flipkart Cucumber Report'
+            ])
+        }
+    }
 }
